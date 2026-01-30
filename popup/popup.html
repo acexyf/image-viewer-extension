@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>图片查看器设置</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>图片弹框查看器PicFlow</h1>
+      <div class="status-container">
+        <div class="status-indicator" id="statusIndicator"></div>
+        <span id="statusText">状态: 加载中...</span>
+      </div>
+
+      <div class="toggle-container">
+        <label class="switch">
+          <input type="checkbox" id="toggleExtension" />
+          <span class="slider"></span>
+        </label>
+        <span class="toggle-label" id="toggleLabel">开启图片点击查看功能</span>
+      </div>
+
+      <div class="instructions">
+        <h3>使用说明:</h3>
+        <ul>
+          <li>打开开关后，<strong>单击</strong>页面上的图片可以弹框查看</li>
+          <li>在弹框中可以使用鼠标滚轮或按钮放大/缩小图片</li>
+          <li>点击旋转按钮可以旋转图片</li>
+          <li>按ESC键或点击背景可以关闭弹框</li>
+        </ul>
+      </div>
+
+      <div class="stats">
+        <p>当前标签页图片数: <span id="imageCount">0</span></p>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
