@@ -69,10 +69,10 @@ document.addEventListener("DOMContentLoaded", function () {
             // 检查运行时错误
             if (chrome.runtime.lastError) {
               // 内容脚本未加载或页面不支持内容脚本（如chrome://页面）
-              console.log(
-                "无法获取图片数量:",
-                chrome.runtime.lastError.message,
-              );
+              // console.log(
+              //   "无法获取图片数量:",
+              //   chrome.runtime.lastError.message,
+              // );
               imageCount.textContent = "N/A";
             } else if (response && response.count !== undefined) {
               imageCount.textContent = response.count;

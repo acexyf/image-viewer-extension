@@ -65,7 +65,7 @@ async function broadcastExtensionStatus(isEnabled) {
           type: "TOGGLE_EXTENSION",
           enabled: isEnabled,
         });
-        console.log(`状态更新已发送到标签页: ${tab.id}`, isEnabled);
+        // console.log(`状态更新已发送到标签页: ${tab.id}`, isEnabled);
       } catch (error) {
         // 如果标签页没有内容脚本（或脚本未加载），忽略错误
         console.log(`无法发送到标签页 ${tab.id}:`, error.message);

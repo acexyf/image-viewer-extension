@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "PicFlow",
+    "description": "Click on the page image to view it in a pop-up window, with support for zooming in, zooming out, and rotating."
+  },
+  "extDescription": {
+    "message": "",
+    "description": ""
+  }
+}

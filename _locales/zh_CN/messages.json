@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "PicFlow",
+    "description": "点击页面图片以弹框形式查看，支持放大、缩小和旋转"
+  },
+  "extDescription": {
+    "message": "",
+    "description": ""
+  }
+}

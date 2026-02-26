@@ -25,7 +25,7 @@ class ImageViewer {
     // 监听来自popup和background的消息
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.type === 'TOGGLE_EXTENSION') {
-        console.log('收到状态更新:', request.enabled ? '启用' : '禁用');
+        // console.log('收到状态更新:', request.enabled ? '启用' : '禁用');
         this.isEnabled = request.enabled;
         
         if (this.isEnabled) {
@@ -67,7 +67,7 @@ class ImageViewer {
         return;
       }
       
-      console.log('事件委托捕获到图片点击，扩展已启用，显示查看器');
+      // console.log('事件委托捕获到图片点击，扩展已启用，显示查看器');
       e.preventDefault();
       e.stopPropagation();
       this.showImageViewer(target.src, target.alt || '图片');

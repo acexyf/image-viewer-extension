@@ -1,10 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "PicFlow",
+  "name": "__MSG_extName__",
   "version": "1.0.2",
-  "description": "点击页面图片以弹框形式查看，支持放大、缩小和旋转",
+  "description": "__MSG_extDescription__",
   "permissions": ["activeTab", "storage", "scripting"],
   "host_permissions": ["<all_urls>"],
+  "default_locale": "en",
   "action": {
     "default_popup": "popup/popup.html",
     "default_icon": {
