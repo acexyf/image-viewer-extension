@@ -64,11 +64,18 @@ class ImageViewer {
       // 收集页面所有图片
       this.collectPageImages();
 
-      // 找到当前点击图片的索引
-      const index = this.pageImages.findIndex((img) => img.element === target);
-      if (index !== -1) {
-        this.currentImageIndex = index;
+      // 确保当前点击的图片在列表中（可能因尺寸属性为0而被过滤）
+      let index = this.pageImages.findIndex((img) => img.element === target);
+      if (index === -1) {
+        // 手动添加当前图片到列表
+        this.pageImages.push({
+          src: target.src,
+          alt: target.alt || "图片",
+          element: target,
+        });
+        index = this.pageImages.length - 1;
       }
+      this.currentImageIndex = index;
 
       this.showImageViewer(target.src, target.alt || "图片");
     }
@@ -208,11 +215,32 @@ class ImageViewer {
       this.downloadImage(),
     );
 
+    // 左右导航按钮
+    const prevBtn = document.createElement("button");
+    prevBtn.className = "image-viewer-nav-btn prev";
+    prevBtn.innerHTML = "‹";
+    prevBtn.title = "上一张";
+    prevBtn.addEventListener("click", (e) => {
+      e.stopPropagation(); // 阻止事件冒泡，避免触发模态框关闭
+      this.navigatePrev();
+    });
+
+    const nextBtn = document.createElement("button");
+    nextBtn.className = "image-viewer-nav-btn next";
+    nextBtn.innerHTML = "›";
+    nextBtn.title = "下一张";
+    nextBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      this.navigateNext();
+    });
+
     controlsTop.appendChild(zoomInBtn);
     controlsTop.appendChild(zoomOutBtn);
     controlsTop.appendChild(rotateCWBtn);
     controlsTop.appendChild(rotateCCWBtn);
     controlsTop.appendChild(downloadBtn);
+    this.modal.appendChild(prevBtn);
+    this.modal.appendChild(nextBtn);
 
     // 图片容器
     const container = document.createElement("div");
@@ -258,11 +286,27 @@ class ImageViewer {
     );
   }
 
+  navigatePrev() {
+    if (this.pageImages.length === 0) return;
+    let newIndex = this.currentImageIndex - 1;
+    if (newIndex < 0) newIndex = this.pageImages.length - 1; // 循环到末尾
+    this.switchToImage(newIndex);
+  }
+
+  navigateNext() {
+    if (this.pageImages.length === 0) return;
+    let newIndex = this.currentImageIndex + 1;
+    if (newIndex >= this.pageImages.length) newIndex = 0; // 循环到开头
+    this.switchToImage(newIndex);
+  }
+
   // 渲染缩略图列表
   renderThumbnails() {
     if (!this.thumbnailsContainer) return;
 
     this.thumbnailsContainer.innerHTML = ""; // 清空
+
+    this.thumbnailsContainer.scrollLeft = 0;
 
     this.pageImages.forEach((img, index) => {
       const thumb = document.createElement("div");
@@ -284,6 +328,28 @@ class ImageViewer {
 
       this.thumbnailsContainer.appendChild(thumb);
     });
+
+    // ===== 新增：动态调整对齐方式 =====
+    this.adjustThumbnailsAlignment();
+  }
+
+  adjustThumbnailsAlignment() {
+    const container = this.thumbnailsContainer;
+    if (!container) return;
+
+    // 使用 setTimeout 确保 DOM 已更新
+    setTimeout(() => {
+      // 检查内容是否超出容器宽度
+      if (container.scrollWidth > container.clientWidth) {
+        // 超出：左对齐，并设置左内边距保证第一张可见
+        container.style.justifyContent = "flex-start";
+        container.style.paddingLeft = "20px";
+      } else {
+        // 未超出：居中，恢复默认内边距
+        container.style.justifyContent = "center";
+        container.style.paddingLeft = "10px"; // 与原来保持一致
+      }
+    }, 0);
   }
 
   // 切换到指定索引的图片
@@ -311,6 +377,12 @@ class ImageViewer {
     for (let i = 0; i < thumbs.length; i++) {
       if (i === activeIndex) {
         thumbs[i].classList.add("active");
+        // 可选：滚动到可见区域
+        thumbs[i].scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "center",
+        });
       } else {
         thumbs[i].classList.remove("active");
       }

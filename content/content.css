@@ -22,7 +22,7 @@
 /* 图片容器 */
 .image-viewer-container {
   max-width: 90%;
-  max-height: 80vh;  /* 留出底部空间给缩略图 */
+  max-height: 80vh; /* 留出底部空间给缩略图 */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,7 +74,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* 缩略图列表 */
+/* 缩略图列表 - 居中 + 横向滚动 */
 .image-viewer-thumbnails {
   position: absolute;
   bottom: 20px;
@@ -82,15 +82,28 @@
   right: 20px;
   display: flex;
   gap: 10px;
-  overflow-x: auto;
+  overflow-x: auto; /* 横向滚动 */
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
   border-radius: 12px;
-  justify-content: center;
-  flex-wrap: wrap; /* 移动端可换行，PC可保持滚动 */
+  justify-content: center; /* 内容少时居中 */
+  flex-wrap: nowrap; /* 禁止换行，确保横向滚动 */
   max-height: 100px;
   z-index: 10;
+  /* 美化滚动条（可选） */
+  scrollbar-width: thin;
+  scrollbar-color: #4285f4 rgba(255, 255, 255, 0.2);
+}
+
+/* WebKit 滚动条样式（Chrome、Edge、Safari） */
+.image-viewer-thumbnails::-webkit-scrollbar {
+  height: 6px;
+}
+
+.image-viewer-thumbnails::-webkit-scrollbar-thumb {
+  background-color: #4285f4;
+  border-radius: 3px;
 }
 
 .image-viewer-thumbnail {
@@ -148,4 +161,42 @@
 
 .image-clickable:hover {
   opacity: 0.9;
+}
+
+/* 左右导航按钮 */
+.image-viewer-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 15;
+  transition:
+    background-color 0.2s,
+    opacity 0.2s;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  opacity: 0.5;
+}
+
+.image-viewer-nav-btn:hover {
+  background-color: rgba(66, 133, 244, 0.8);
+  opacity: 1;
+}
+
+.image-viewer-nav-btn.prev {
+  left: 20px;
+}
+
+.image-viewer-nav-btn.next {
+  right: 20px;
 }
