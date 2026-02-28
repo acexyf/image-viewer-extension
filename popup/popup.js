@@ -30,27 +30,18 @@ document.addEventListener("DOMContentLoaded", function () {
     // 更新UI
     updateStatusUI(isEnabled);
 
-    // 向当前标签页发送状态更新（添加错误处理）
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      if (tabs[0].id) {
-        chrome.tabs.sendMessage(
-          tabs[0].id,
-          {
-            type: "TOGGLE_EXTENSION",
-            enabled: isEnabled,
-          },
-          function (response) {
-            // 忽略错误，因为某些页面可能不允许内容脚本运行
-            if (chrome.runtime.lastError) {
-              console.log(
-                "无法发送消息到内容脚本:",
-                chrome.runtime.lastError.message,
-              );
-            }
-          },
-        );
-      }
-    });
+    // 向后台脚本发送广播请求
+    chrome.runtime.sendMessage(
+      {
+        type: "BROADCAST_STATUS_UPDATE",
+        enabled: isEnabled,
+      },
+      function (response) {
+        if (response && response.success) {
+          console.log("状态更新已广播到所有标签页");
+        }
+      },
+    );
   });
 
   // 更新状态UI
@@ -78,10 +69,10 @@ document.addEventListener("DOMContentLoaded", function () {
             // 检查运行时错误
             if (chrome.runtime.lastError) {
               // 内容脚本未加载或页面不支持内容脚本（如chrome://页面）
-              console.log(
-                "无法获取图片数量:",
-                chrome.runtime.lastError.message,
-              );
+              // console.log(
+              //   "无法获取图片数量:",
+              //   chrome.runtime.lastError.message,
+              // );
               imageCount.textContent = "N/A";
             } else if (response && response.count !== undefined) {
               imageCount.textContent = response.count;

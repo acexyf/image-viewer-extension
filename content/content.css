@@ -1,4 +1,4 @@
-/* 图片查看器模态框样式 */
+/* 图片查看器模态框样式 - 保持不变 */
 .image-viewer-modal {
   position: fixed;
   top: 0;
@@ -112,12 +112,12 @@
   padding: 10px;
 }
 
-/* 修改后的点击效果样式 */
+/* 简化后的可点击图片样式 - 只保留视觉提示 */
 .image-clickable {
-  cursor: pointer !important;  /* 改为指针光标，表示可点击 */
-  transition: opacity 0.2s ease;  /* 改为透明度过渡 */
+  cursor: pointer !important;
+  transition: opacity 0.2s ease;
 }
 
 .image-clickable:hover {
-  opacity: 0.95;  /* 轻微透明度变化表示可交互 */
+  opacity: 0.9;
 }
