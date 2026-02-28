@@ -1,4 +1,4 @@
-/* 图片查看器模态框样式 - 保持不变 */
+/* 模态框基础样式保持不变 */
 .image-viewer-modal {
   position: fixed;
   top: 0;
@@ -19,19 +19,18 @@
   opacity: 1;
 }
 
+/* 图片容器 */
 .image-viewer-container {
   max-width: 90%;
-  max-height: 90%;
+  max-height: 80vh;  /* 留出底部空间给缩略图 */
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
 }
 
 .image-viewer-img {
   max-width: 100%;
-  max-height: 80vh;
+  max-height: 100%;
   object-fit: contain;
   transition: transform 0.3s ease;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
@@ -39,14 +38,18 @@
   background-color: #fff;
 }
 
-.image-viewer-controls {
+/* 右上角控制栏 */
+.image-viewer-controls-top {
+  position: absolute;
+  top: 20px;
+  right: 80px; /* 给关闭按钮留空间 */
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  gap: 8px;
   background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 50px;
-  padding: 10px 20px;
+  border-radius: 40px;
+  padding: 8px 12px;
   backdrop-filter: blur(10px);
+  z-index: 10;
 }
 
 .image-viewer-btn {
@@ -54,9 +57,8 @@
   color: white;
   border: none;
   border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  margin: 0 8px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -72,13 +74,50 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.image-viewer-btn:active {
-  transform: translateY(0);
+/* 缩略图列表 */
+.image-viewer-thumbnails {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 12px;
+  justify-content: center;
+  flex-wrap: wrap; /* 移动端可换行，PC可保持滚动 */
+  max-height: 100px;
+  z-index: 10;
 }
 
+.image-viewer-thumbnail {
+  width: 80px;
+  height: 60px;
+  flex-shrink: 0;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.image-viewer-thumbnail.active {
+  border-color: #4285f4;
+}
+
+.image-viewer-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 关闭按钮（右上角） */
 .image-viewer-btn-close {
   position: absolute;
-  top: 20px;
+  top: 26px;
   right: 20px;
   background-color: rgba(255, 255, 255, 0.1);
   color: white;
@@ -92,7 +131,7 @@
   justify-content: center;
   font-size: 24px;
   transition: all 0.2s ease;
-  z-index: 10;
+  z-index: 20;
   backdrop-filter: blur(10px);
 }
 
@@ -101,18 +140,7 @@
   transform: rotate(90deg);
 }
 
-.image-viewer-info {
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 14px;
-  padding: 10px;
-}
-
-/* 简化后的可点击图片样式 - 只保留视觉提示 */
+/* 图片点击样式保持不变 */
 .image-clickable {
   cursor: pointer !important;
   transition: opacity 0.2s ease;
