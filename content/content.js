@@ -275,10 +275,17 @@ class ImageViewer {
       if (e.target === this.modal) this.hideImageViewer();
     });
 
-    // 鼠标滚轮缩放
+    // 鼠标滚轮缩放（避开缩略图区域）
     this.modal.addEventListener(
       "wheel",
       (e) => {
+        // 如果事件目标在缩略图容器内，则让默认滚动发生（水平滚动缩略图）
+        if (
+          this.thumbnailsContainer &&
+          this.thumbnailsContainer.contains(e.target)
+        ) {
+          return; // 不执行 preventDefault，让浏览器默认滚动
+        }
         e.preventDefault();
         e.deltaY < 0 ? this.zoomIn() : this.zoomOut();
       },
