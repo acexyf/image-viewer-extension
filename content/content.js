@@ -199,19 +199,19 @@ class ImageViewer {
     controlsTop.className = "image-viewer-controls-top";
 
     // 创建操作按钮（放大、缩小、顺时针旋转、逆时针旋转、重置、下载）
-    const zoomInBtn = this.createControlButton("+", "放大", () =>
+    const zoomInBtn = this.createControlButton("+", "zoomIn", () =>
       this.zoomIn(),
     );
-    const zoomOutBtn = this.createControlButton("-", "缩小", () =>
+    const zoomOutBtn = this.createControlButton("-", "zoomOut", () =>
       this.zoomOut(),
     );
-    const rotateCWBtn = this.createControlButton("↻", "顺时针旋转", () =>
+    const rotateCWBtn = this.createControlButton("↻", "rotateCW", () =>
       this.rotate(90),
     );
-    const rotateCCWBtn = this.createControlButton("↺", "逆时针旋转", () =>
+    const rotateCCWBtn = this.createControlButton("↺", "rotateCCW", () =>
       this.rotate(-90),
     );
-    const downloadBtn = this.createControlButton("⬇", "下载图片", () =>
+    const downloadBtn = this.createControlButton("⬇", "download", () =>
       this.downloadImage(),
     );
 
@@ -219,7 +219,7 @@ class ImageViewer {
     const prevBtn = document.createElement("button");
     prevBtn.className = "image-viewer-nav-btn prev";
     prevBtn.innerHTML = "‹";
-    prevBtn.title = "上一张";
+    prevBtn.title = chrome.i18n.getMessage('prevImage');
     prevBtn.addEventListener("click", (e) => {
       e.stopPropagation(); // 阻止事件冒泡，避免触发模态框关闭
       this.navigatePrev();
@@ -228,7 +228,7 @@ class ImageViewer {
     const nextBtn = document.createElement("button");
     nextBtn.className = "image-viewer-nav-btn next";
     nextBtn.innerHTML = "›";
-    nextBtn.title = "下一张";
+    nextBtn.title = chrome.i18n.getMessage('nextImage');
     nextBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       this.navigateNext();
@@ -435,15 +435,16 @@ class ImageViewer {
       URL.revokeObjectURL(url);
     } catch (error) {
       console.error("下载失败:", error);
-      alert("下载失败，可能由于跨域限制。您可以尝试右键图片另存为。");
+      alert(chrome.i18n.getMessage('downloadError'));
     }
   }
 
   // 原有的辅助方法（保持不变）
-  createControlButton(text, title, onClick) {
+  createControlButton(text, titleKey, onClick) {
     const btn = document.createElement("button");
     btn.className = "image-viewer-btn";
-    btn.title = title;
+    btn.title = chrome.i18n.getMessage(titleKey);
+    // 注意：这里的 text 是按钮上显示的符号，不需要翻译
     btn.textContent = text;
     btn.addEventListener("click", onClick);
     return btn;
