@@ -1,10 +1,94 @@
 {
   "extName": {
     "message": "PicFlow",
-    "description": "点击页面图片以弹框形式查看，支持放大、缩小和旋转"
+    "description": "插件名称"
   },
   "extDescription": {
-    "message": "",
-    "description": ""
+    "message": "点击页面图片以弹框形式查看，支持放大、缩小和旋转。",
+    "description": "插件描述"
+  },
+  "popupTitle": {
+    "message": "图片弹框查看器PicFlow",
+    "description": "Popup弹窗标题"
+  },
+  "statusLoading": {
+    "message": "状态: 加载中...",
+    "description": "状态加载中文本"
+  },
+  "statusEnabled": {
+    "message": "状态: 已启用",
+    "description": "启用状态文本"
+  },
+  "statusDisabled": {
+    "message": "状态: 已禁用",
+    "description": "禁用状态文本"
+  },
+  "toggleLabel": {
+    "message": "开启图片点击查看功能",
+    "description": "Popup开关旁标签"
+  },
+  "instructions": {
+    "message": "使用说明:",
+    "description": "Popup说明标题"
+  },
+  "instruction1": {
+    "message": "打开开关后，<strong>单击</strong>页面上的图片可以弹框查看。",
+    "description": "说明1"
+  },
+  "instruction2": {
+    "message": "在弹框中可以使用鼠标滚轮或按钮放大/缩小图片。",
+    "description": "说明2"
+  },
+  "instruction3": {
+    "message": "点击旋转按钮可旋转图片。",
+    "description": "说明3"
+  },
+  "instruction4": {
+    "message": "按ESC键或点击背景关闭查看器。",
+    "description": "说明4"
+  },
+  "imageCount": {
+    "message": "当前标签页图片数:",
+    "description": "图片数量标签"
+  },
+  "closeBtn": {
+    "message": "关闭",
+    "description": "关闭按钮提示"
+  },
+  "zoomIn": {
+    "message": "放大",
+    "description": "放大按钮提示"
+  },
+  "zoomOut": {
+    "message": "缩小",
+    "description": "缩小按钮提示"
+  },
+  "rotateCW": {
+    "message": "顺时针旋转",
+    "description": "顺时针旋转按钮提示"
+  },
+  "rotateCCW": {
+    "message": "逆时针旋转",
+    "description": "逆时针旋转按钮提示"
+  },
+  "download": {
+    "message": "下载图片",
+    "description": "下载按钮提示"
+  },
+  "prevImage": {
+    "message": "上一张",
+    "description": "上一张按钮提示"
+  },
+  "nextImage": {
+    "message": "下一张",
+    "description": "下一张按钮提示"
+  },
+  "wheelInfo": {
+    "message": "使用鼠标滚轮缩放图片，ESC键关闭",
+    "description": "查看器提示文本"
+  },
+  "downloadError": {
+    "message": "下载失败，可能由于跨域限制。您可以尝试右键图片另存为。",
+    "description": "下载错误提示"
   }
 }

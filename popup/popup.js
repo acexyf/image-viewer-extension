@@ -1,4 +1,23 @@
+function localizeHtmlPage() {
+  const elements = document.querySelectorAll('[data-i18n]');
+  elements.forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const translation = chrome.i18n.getMessage(key);
+    if (translation) {
+      // 如果元素包含 HTML 标签（如 <strong>），需要使用 innerHTML
+      // 否则使用 textContent
+      if (translation.includes('<') && translation.includes('>')) {
+        el.innerHTML = translation;
+      } else {
+        el.textContent = translation;
+      }
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+  localizeHtmlPage();
+  
   const toggleExtension = document.getElementById("toggleExtension");
   const statusIndicator = document.getElementById("statusIndicator");
   const statusText = document.getElementById("statusText");
@@ -48,12 +67,10 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateStatusUI(isEnabled) {
     if (isEnabled) {
       statusIndicator.className = "status-indicator active";
-      statusText.textContent = "状态: 已启用";
-      toggleLabel.textContent = "开启图片点击查看功能";
+      statusText.textContent = chrome.i18n.getMessage('statusEnabled');
     } else {
       statusIndicator.className = "status-indicator inactive";
-      statusText.textContent = "状态: 已禁用";
-      toggleLabel.textContent = "开启图片点击查看功能";
+      statusText.textContent = chrome.i18n.getMessage('statusDisabled');
     }
   }
 

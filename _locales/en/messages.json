@@ -1,10 +1,94 @@
 {
   "extName": {
     "message": "PicFlow",
-    "description": "Click on the page image to view it in a pop-up window, with support for zooming in, zooming out, and rotating."
+    "description": "Extension name"
   },
   "extDescription": {
-    "message": "",
-    "description": ""
+    "message": "Click any image on the page to view it in full-screen with zoom and rotate.",
+    "description": "Extension description"
+  },
+  "popupTitle": {
+    "message": "Image Viewer PicFlow Settings",
+    "description": "Title in popup"
+  },
+  "statusLoading": {
+    "message": "Status: Loading...",
+    "description": "Status Loading text"
+  },
+  "statusEnabled": {
+    "message": "Status: Enabled",
+    "description": "Status text when enabled"
+  },
+  "statusDisabled": {
+    "message": "Status: Disabled",
+    "description": "Status text when disabled"
+  },
+  "toggleLabel": {
+    "message": "Click the picture to view the full content",
+    "description": "Toggle label when on"
+  },
+  "instructions": {
+    "message": "Instructions",
+    "description": "Instructions heading"
+  },
+  "instruction1": {
+    "message": "After turning on, <strong>click</strong> any image on the page to view it in full screen.",
+    "description": "Instruction 1"
+  },
+  "instruction2": {
+    "message": "In the viewer, use mouse wheel or buttons to zoom in/out.",
+    "description": "Instruction 2"
+  },
+  "instruction3": {
+    "message": "Click the rotate buttons to rotate the image.",
+    "description": "Instruction 3"
+  },
+  "instruction4": {
+    "message": "Press ESC key or click the background to close viewer.",
+    "description": "Instruction 4"
+  },
+  "imageCount": {
+    "message": "Images on current tab:",
+    "description": "Image count label"
+  },
+  "closeBtn": {
+    "message": "Close",
+    "description": "Close button title"
+  },
+  "zoomIn": {
+    "message": "Zoom In",
+    "description": "Zoom in button title"
+  },
+  "zoomOut": {
+    "message": "Zoom Out",
+    "description": "Zoom out button title"
+  },
+  "rotateCW": {
+    "message": "Rotate Clockwise",
+    "description": "Rotate clockwise button title"
+  },
+  "rotateCCW": {
+    "message": "Rotate Counterclockwise",
+    "description": "Rotate counterclockwise button title"
+  },
+  "download": {
+    "message": "Download Image",
+    "description": "Download button title"
+  },
+  "prevImage": {
+    "message": "Previous Image",
+    "description": "Previous image button title"
+  },
+  "nextImage": {
+    "message": "Next Image",
+    "description": "Next image button title"
+  },
+  "wheelInfo": {
+    "message": "Use mouse wheel to zoom, ESC to close",
+    "description": "Info text in viewer"
+  },
+  "downloadError": {
+    "message": "Download failed, possibly due to cross-origin restrictions. Try right-click and save as.",
+    "description": "Download error message"
   }
 }
